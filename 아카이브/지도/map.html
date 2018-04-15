@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #map {
+        width: 100%;
+        max-width: 600px;
+        height: 400px;
+       }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+    function initMap() {
+
+		var locations = [
+		  ['pite1240','Pite Sami','sje','language','Eurasia',66.4011,17.4261],
+		  ['kaya1319','Kayardild','gyd','language','Australia',-17.0695,139.489],
+		  ['lako1247','Lakota','lkt','language','North America',46.3699,-103.95],
+		  ['lang1324','Lango','laj','language','Africa',2.13867,33.0553],
+		  ['chuk1273','Chukchi','ckt','language','Eurasia',68.6436,170.045],
+		  ['ikkk1242','Ik','ikx','language','Africa',3.61407,34.2507],
+		  ['kala1397','Kalam','kmh','language','Papunesia',-5.25216,144.585],
+		  ['paco1243','Pacoh','pac','language','Eurasia',16.3353,107.094],
+		  ['khap1242','Kri','aem','dialect','Eurasia',17.5,105.333333],
+		  ['lezg1247','Lezgian','lez','language','Eurasia',41.5157,47.8951],
+		  ['mats1244','Matsés','mcf','language','South America',-5.73914,-72.6281]
+		];      
+
+	    var map = new google.maps.Map(document.getElementById('map'), {
+	      zoom: 1,
+	      center: new google.maps.LatLng(37.5,128.0),
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    });
+
+		var infowindow = new google.maps.InfoWindow();
+
+		var marker, i;
+
+	    for (i = 0; i < locations.length; i++) {  
+	      marker = new google.maps.Marker({
+	        position: new google.maps.LatLng(locations[i][5], locations[i][6]),
+	        map: map
+	      });
+
+	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	        return function() {
+	          infowindow.setContent(locations[i][1]);
+	          infowindow.open(map, marker);
+	        }
+	      })(marker, i));
+	    }
+	}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjqyS1ij6fuY8ahZVN6xxRTMXn8UB6T90&callback=initMap">
+    </script>
+  </body>
+</html>
+
+	
+
